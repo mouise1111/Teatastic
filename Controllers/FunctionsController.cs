@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Teatastic.Data;
 using Teatastic.Models;
 
-namespace Teatastic
+namespace Teatastic.Controllers
 {
     public class FunctionsController : Controller
     {
@@ -22,7 +22,7 @@ namespace Teatastic
         // GET: Functions
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Functions.ToListAsync());
+            return View(await _context.Functions.ToListAsync());
         }
 
         // GET: Functions/Details/5
@@ -148,14 +148,14 @@ namespace Teatastic
             {
                 _context.Functions.Remove(function);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool FunctionExists(int id)
         {
-          return _context.Functions.Any(e => e.Id == id);
+            return _context.Functions.Any(e => e.Id == id);
         }
     }
 }

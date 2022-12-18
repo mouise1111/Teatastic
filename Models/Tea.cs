@@ -8,6 +8,8 @@ namespace Teatastic.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(100)]
+        [DataType(DataType.Text)]
         public string Name { get; set; }
 
 

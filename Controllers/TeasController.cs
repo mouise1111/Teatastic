@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
 using Teatastic.Data;
 using Teatastic.Models;
@@ -22,7 +23,11 @@ namespace Teatastic.Controllers
         // GET: Teas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Teas.ToListAsync());
+            return View(await _context.Teas.Include(t => t.Teas_Functions)
+                .ToListAsync());
+
+            //return View(await _context.Teas.ToListAsync());
+
         }
 
         // GET: Teas/Details/5
@@ -46,15 +51,29 @@ namespace Teatastic.Controllers
         // GET: Teas/Create
         public IActionResult Create()
         {
+            /*ViewData["FunctionIds"] = new MultiSelectList(_context.Category.OrderBy(c => c.Name), "Id", "Name");
+            Media media = new Media();
+            return View(media);*/
             return View();
         }
+        /*public async Task<IActionResult> Create()
+        {
+            Functions = await _context.Functions.ToListAsync();
+            var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
+
+            ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
+            ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+            ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
+
+            return View();
+        }*/
 
         // POST: Teas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price")] Tea tea)
+        public async Task<IActionResult> Create( Tea tea)
         {
             if (ModelState.IsValid)
             {
