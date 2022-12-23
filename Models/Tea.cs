@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Teatastic.Models
 {
@@ -17,7 +18,10 @@ namespace Teatastic.Models
         public double Price { get; set; }
 
         //Relationship
-        public List<Tea_Function> Teas_Functions { get; set; }
+        public List<Function>? Functions { get; set; }
+
+        [NotMapped]
+        public List<int> FunctionIds { get; set; }
 
     }
 }

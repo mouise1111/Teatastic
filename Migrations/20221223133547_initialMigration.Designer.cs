@@ -12,8 +12,8 @@ using Teatastic.Data;
 namespace Teatastic.Migrations
 {
     [DbContext(typeof(TeatasticContext))]
-    [Migration("20221218153505_TeaAndFunction")]
-    partial class TeaAndFunction
+    [Migration("20221223133547_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -240,42 +240,7 @@ namespace Teatastic.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Functions");
-                });
-
-            modelBuilder.Entity("Teatastic.Models.Tea", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Teas");
-                });
-
-            modelBuilder.Entity("Teatastic.Models.Tea_Function", b =>
-                {
-                    b.Property<int>("TeaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FunctionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TeaId", "FunctionId");
-
-                    b.HasIndex("FunctionId");
-
-                    b.ToTable("Tea_Function");
+                    b.ToTable("Function");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -327,35 +292,6 @@ namespace Teatastic.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Teatastic.Models.Tea_Function", b =>
-                {
-                    b.HasOne("Teatastic.Models.Function", "Function")
-                        .WithMany("Teas_Functions")
-                        .HasForeignKey("FunctionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Teatastic.Models.Tea", "Tea")
-                        .WithMany("Teas_Functions")
-                        .HasForeignKey("TeaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Function");
-
-                    b.Navigation("Tea");
-                });
-
-            modelBuilder.Entity("Teatastic.Models.Function", b =>
-                {
-                    b.Navigation("Teas_Functions");
-                });
-
-            modelBuilder.Entity("Teatastic.Models.Tea", b =>
-                {
-                    b.Navigation("Teas_Functions");
                 });
 #pragma warning restore 612, 618
         }

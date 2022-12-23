@@ -23,22 +23,18 @@ namespace Teatastic.Controllers
         // GET: Teas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Teas.Include(t => t.Teas_Functions)
-                .ToListAsync());
-
-            //return View(await _context.Teas.ToListAsync());
-
+            return View(await _context.Tea.Include(t => t.Functions).ToListAsync());
         }
 
         // GET: Teas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Teas == null)
+            if (id == null || _context.Tea == null)
             {
                 return NotFound();
             }
 
-            var tea = await _context.Teas
+            var tea = await _context.Tea
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tea == null)
             {
@@ -51,32 +47,29 @@ namespace Teatastic.Controllers
         // GET: Teas/Create
         public IActionResult Create()
         {
-            /*ViewData["FunctionIds"] = new MultiSelectList(_context.Category.OrderBy(c => c.Name), "Id", "Name");
-            Media media = new Media();
-            return View(media);*/
-            return View();
+            ViewData["FunctionIds"] = new MultiSelectList(_context.Function.OrderBy(c => c.Name), "Id", "Name");
+            Tea tea = new Tea();
+            return View(tea);
         }
-        /*public async Task<IActionResult> Create()
-        {
-            Functions = await _context.Functions.ToListAsync();
-            var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
-
-            ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
-            ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
-            ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
-
-            return View();
-        }*/
 
         // POST: Teas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Tea tea)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,FunctionIds")] Tea tea)
         {
+            
             if (ModelState.IsValid)
             {
+                if (tea.Functions == null)
+                {
+                    tea.Functions = new List<Function>(); 
+                }
+                foreach (int FunctionId in tea.FunctionIds)
+                {
+                    tea.Functions.Add(_context.Function.FirstOrDefault(f => f.Id == FunctionId));
+                }
                 _context.Add(tea);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -87,12 +80,14 @@ namespace Teatastic.Controllers
         // GET: Teas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Teas == null)
+            
+            if (id == null || _context.Tea == null)
             {
                 return NotFound();
             }
 
-            var tea = await _context.Teas.FindAsync(id);
+            var tea = await _context.Tea.Include(t => t.Functions).FirstOrDefaultAsync(t => t.Id == id);
+            ViewData["FunctionIds"] = new MultiSelectList(_context.Function.OrderBy(c => c.Name), "Id", "Name");
             if (tea == null)
             {
                 return NotFound();
@@ -138,12 +133,12 @@ namespace Teatastic.Controllers
         // GET: Teas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Teas == null)
+            if (id == null || _context.Tea == null)
             {
                 return NotFound();
             }
 
-            var tea = await _context.Teas
+            var tea = await _context.Tea
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tea == null)
             {
@@ -158,14 +153,14 @@ namespace Teatastic.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Teas == null)
+            if (_context.Tea == null)
             {
-                return Problem("Entity set 'TeatasticContext.Teas'  is null.");
+                return Problem("Entity set 'TeatasticContext.Tea'  is null.");
             }
-            var tea = await _context.Teas.FindAsync(id);
+            var tea = await _context.Tea.FindAsync(id);
             if (tea != null)
             {
-                _context.Teas.Remove(tea);
+                _context.Tea.Remove(tea);
             }
 
             await _context.SaveChangesAsync();
@@ -174,7 +169,7 @@ namespace Teatastic.Controllers
 
         private bool TeaExists(int id)
         {
-            return _context.Teas.Any(e => e.Id == id);
+            return _context.Tea.Any(e => e.Id == id);
         }
     }
 }

@@ -236,9 +236,14 @@ namespace Teatastic.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TeaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Functions");
+                    b.HasIndex("TeaId");
+
+                    b.ToTable("Function");
                 });
 
             modelBuilder.Entity("Teatastic.Models.Tea", b =>
@@ -251,29 +256,15 @@ namespace Teatastic.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Teas");
-                });
-
-            modelBuilder.Entity("Teatastic.Models.Tea_Function", b =>
-                {
-                    b.Property<int>("TeaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FunctionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TeaId", "FunctionId");
-
-                    b.HasIndex("FunctionId");
-
-                    b.ToTable("Tea_Function");
+                    b.ToTable("Tea");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -327,33 +318,16 @@ namespace Teatastic.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Teatastic.Models.Tea_Function", b =>
-                {
-                    b.HasOne("Teatastic.Models.Function", "Function")
-                        .WithMany("Teas_Functions")
-                        .HasForeignKey("FunctionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Teatastic.Models.Tea", "Tea")
-                        .WithMany("Teas_Functions")
-                        .HasForeignKey("TeaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Function");
-
-                    b.Navigation("Tea");
-                });
-
             modelBuilder.Entity("Teatastic.Models.Function", b =>
                 {
-                    b.Navigation("Teas_Functions");
+                    b.HasOne("Teatastic.Models.Tea", null)
+                        .WithMany("Functions")
+                        .HasForeignKey("TeaId");
                 });
 
             modelBuilder.Entity("Teatastic.Models.Tea", b =>
                 {
-                    b.Navigation("Teas_Functions");
+                    b.Navigation("Functions");
                 });
 #pragma warning restore 612, 618
         }

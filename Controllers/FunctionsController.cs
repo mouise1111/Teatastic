@@ -22,18 +22,18 @@ namespace Teatastic.Controllers
         // GET: Functions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Functions.ToListAsync());
+            return View(await _context.Function.ToListAsync());
         }
 
         // GET: Functions/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Functions == null)
+            if (id == null || _context.Function == null)
             {
                 return NotFound();
             }
 
-            var function = await _context.Functions
+            var function = await _context.Function
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (function == null)
             {
@@ -68,12 +68,12 @@ namespace Teatastic.Controllers
         // GET: Functions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Functions == null)
+            if (id == null || _context.Function == null)
             {
                 return NotFound();
             }
 
-            var function = await _context.Functions.FindAsync(id);
+            var function = await _context.Function.FindAsync(id);
             if (function == null)
             {
                 return NotFound();
@@ -119,12 +119,12 @@ namespace Teatastic.Controllers
         // GET: Functions/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Functions == null)
+            if (id == null || _context.Function == null)
             {
                 return NotFound();
             }
 
-            var function = await _context.Functions
+            var function = await _context.Function
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (function == null)
             {
@@ -139,14 +139,14 @@ namespace Teatastic.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Functions == null)
+            if (_context.Function == null)
             {
-                return Problem("Entity set 'TeatasticContext.Functions'  is null.");
+                return Problem("Entity set 'TeatasticContext.Function'  is null.");
             }
-            var function = await _context.Functions.FindAsync(id);
+            var function = await _context.Function.FindAsync(id);
             if (function != null)
             {
-                _context.Functions.Remove(function);
+                _context.Function.Remove(function);
             }
 
             await _context.SaveChangesAsync();
@@ -155,7 +155,7 @@ namespace Teatastic.Controllers
 
         private bool FunctionExists(int id)
         {
-            return _context.Functions.Any(e => e.Id == id);
+            return _context.Function.Any(e => e.Id == id);
         }
     }
 }
