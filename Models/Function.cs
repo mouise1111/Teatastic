@@ -11,6 +11,7 @@ namespace Teatastic.Models
         public string Name { get; set; }
 
 
-        
+        //Relationship
+        public List<Tea>? Teas { get; set; }
     }
 }

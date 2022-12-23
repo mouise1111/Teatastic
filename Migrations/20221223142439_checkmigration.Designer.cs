@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Teatastic.Data;
 
@@ -11,9 +12,10 @@ using Teatastic.Data;
 namespace Teatastic.Migrations
 {
     [DbContext(typeof(TeatasticContext))]
-    partial class TeatasticContextModelSnapshot : ModelSnapshot
+    [Migration("20221223142439_checkmigration")]
+    partial class checkmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +23,6 @@ namespace Teatastic.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("FunctionTea", b =>
-                {
-                    b.Property<int>("FunctionsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeasId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FunctionsId", "TeasId");
-
-                    b.HasIndex("TeasId");
-
-                    b.ToTable("FunctionTea");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -251,7 +238,12 @@ namespace Teatastic.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TeaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TeaId");
 
                     b.ToTable("Function");
                 });
@@ -275,21 +267,6 @@ namespace Teatastic.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tea");
-                });
-
-            modelBuilder.Entity("FunctionTea", b =>
-                {
-                    b.HasOne("Teatastic.Models.Function", null)
-                        .WithMany()
-                        .HasForeignKey("FunctionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Teatastic.Models.Tea", null)
-                        .WithMany()
-                        .HasForeignKey("TeasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -341,6 +318,18 @@ namespace Teatastic.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Teatastic.Models.Function", b =>
+                {
+                    b.HasOne("Teatastic.Models.Tea", null)
+                        .WithMany("Functions")
+                        .HasForeignKey("TeaId");
+                });
+
+            modelBuilder.Entity("Teatastic.Models.Tea", b =>
+                {
+                    b.Navigation("Functions");
                 });
 #pragma warning restore 612, 618
         }

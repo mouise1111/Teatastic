@@ -10,7 +10,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -45,4 +45,30 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@
+<div class="d-flex align-items-center mt-5"
+     style="display: flex; gap:4em; justify-content:center; flex-flow:wrap; text-align:center;">
+@foreach (var item in Model)
+{
+                <div class="card" style="width: 18rem;">
+                 @*<img src="..." class="card-img-top" alt="...">*@
+                  <div class="card-body">
+                <h5 class="card-title" style="text-transform:uppercase;">
+                @Html.DisplayFor(modelItem => item.Name)
+                        </h5>
+                <p class="card-text" style="font-weight:bold;">
+                @Html.DisplayFor(modelItem => item.Price)
+                        </p> 
+                        <p class="card-text">                
+                @foreach (var func in item.Functions)
+                {
+                            <p style="display:inline-block" class="badge bg-info"> @func.Name</p>
+                }
+                        </p>
+                        <a href="#" class="btn btn-primary">Add to Cart <i class="bi bi-cart"></i> </a>
+          </div>
+        </div>
+      
+}
+</div>
+@*PAGINATION*@
