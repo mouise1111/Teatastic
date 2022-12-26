@@ -10,7 +10,7 @@ namespace Teatastic.Models
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-            // Crear ROLES
+            // Create ROLES
             List<IdentityRole> roles = new List<IdentityRole>() {
                 new IdentityRole { Name = "Administrator", NormalizedName = "ADMINISTRATOR" },
                 new IdentityRole { Name = "Client", NormalizedName = "CLIENT" }
@@ -21,17 +21,17 @@ namespace Teatastic.Models
             List<TeatasticUser> users = new List<TeatasticUser>() {
                 new TeatasticUser {
                     UserName = "admin@tea.com",
-                    NormalizedUserName = "ADMIN@TEA.COM",
+                    //NormalizedUserName = "ADMIN@TEA.COM",
                     Email = "admin@tea.com",
-                    NormalizedEmail = "ADMIN@TEA.COM",
+                    //NormalizedEmail = "ADMIN@TEA.COM",
                     FirstName= "Admin",
                     LastName = "Aaa"
                 },
                 new TeatasticUser {
                     UserName = "user@tea.com",
-                    NormalizedUserName = "USER@TEA.COM",
+                    //NormalizedUserName = "USER@TEA.COM",
                     Email = "USER@tea.com",
-                    NormalizedEmail = "USER@TEA.COM",
+                    //NormalizedEmail = "USER@TEA.COM",
                     FirstName= "John",
                     LastName = "Doe"
                 }
