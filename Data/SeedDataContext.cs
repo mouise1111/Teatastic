@@ -69,9 +69,9 @@ namespace Teatastic.Data
                 if (!context.Function.Any())
                 {
                     context.Function.AddRange(
-                        new Function { Id=1,Name = "Relaxing" },
-                        new Function { Id=2,Name = "Energizing" },
-                        new Function { Id=3,Name = "Detoxifying" }
+                        new Function { Name = "Relaxing" },
+                        new Function { Name = "Energizing" },
+                        new Function { Name = "Detoxifying" }
                         );
                     context.SaveChanges();
                 }
@@ -79,9 +79,9 @@ namespace Teatastic.Data
                 if (!context.Brands.Any())
                 {
                     context.Brands.AddRange(
-                        new Brand { Id= 1,Name = "Liption" },
-                        new Brand { Id= 2,Name = "NoonHerb" },
-                        new Brand { Id=3,Name = "TiZone" }
+                        new Brand { Name = "Liption" },
+                        new Brand { Name = "NoonHerb" },
+                        new Brand { Name = "TiZone" }
                         );
                     context.SaveChanges();
                 }
@@ -91,7 +91,6 @@ namespace Teatastic.Data
                     context.Tea.AddRange(
                         new Tea
                         {
-                            Id = 1,
                             Name = "Green Tea",
                             Price = 3.99,
                             BrandId = 1,
@@ -99,7 +98,6 @@ namespace Teatastic.Data
                         }, 
                         new Tea
                         {
-                            Id = 2,
                             Name = "Black Tea",
                             Price = 6.99,
                             BrandId = 1,
@@ -107,7 +105,6 @@ namespace Teatastic.Data
                         }, 
                         new Tea
                         {
-                            Id = 3,
                             Name = "Yellow Tea",
                             Price = 2.99,
                             BrandId = 2,
