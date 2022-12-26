@@ -13,10 +13,9 @@ builder.Services.AddDbContext<TeatasticContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<TeatasticUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<TeatasticContext>();
 
-/*builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
-    .AddEntityFrameworkStores<ApplicationDbContext>();*/
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -31,23 +30,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-//var host = CreateHostBuilder(args).Build();
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var userManager = services.GetRequiredService<UserManager<TeatasticUser>>();
+    await SeedDataContext.Initialize(services, userManager);
+}
 
-//    using (var scope = host.Services.CreateScope())
-//    {
-//        var services = scope.ServiceProvider;
-//        try
-//        {
-//            SeedData.Initialize(services);
-//        }
-//        catch (Exception ex)
-//        {
-//            var logger = services.GetRequiredService<ILogger<Program>>();
-//            logger.LogError(ex, "An error occurred seeding the DB.");
-//        }
-//    }
-
-//    host.Run();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

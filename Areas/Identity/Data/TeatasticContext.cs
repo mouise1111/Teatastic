@@ -22,7 +22,6 @@ public class TeatasticContext : IdentityDbContext<TeatasticUser>
     public DbSet<Brand> Brands { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Seed();
         base.OnModelCreating(builder);
 
         builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
