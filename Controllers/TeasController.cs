@@ -18,7 +18,7 @@ namespace Teatastic.Controllers
         // GET: Teas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tea.Include(t => t.Functions).ToListAsync());
+            return View(await _context.Tea.Include(t => t.Functions).Include(t => t.Brand).ToListAsync());
         }
 
         // GET: Teas/Details/5
@@ -30,7 +30,9 @@ namespace Teatastic.Controllers
             }
 
             var tea = await _context.Tea
+                .Include(t => t.Functions)
                 .FirstOrDefaultAsync(m => m.Id == id);
+            //.FirstOrDefaultAsync(m => m.Id == id);
             if (tea == null)
             {
                 return NotFound();
@@ -43,6 +45,7 @@ namespace Teatastic.Controllers
         public IActionResult Create()
         {
             ViewData["FunctionIds"] = new MultiSelectList(_context.Function.OrderBy(c => c.Name), "Id", "Name");
+            ViewData["BrandId"] = new MultiSelectList(_context.Brands.OrderBy(c => c.Name), "Id", "Name");
             Tea tea = new Tea();
             return View(tea);
         }
@@ -52,7 +55,7 @@ namespace Teatastic.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,FunctionIds")] Tea tea)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,FunctionIds,BrandId")] Tea tea)
         {
 
             if (ModelState.IsValid)
@@ -65,6 +68,10 @@ namespace Teatastic.Controllers
                 {
                     tea.Functions.Add(_context.Function.FirstOrDefault(f => f.Id == FunctionId));
                 }
+
+                // Add brand to tea
+                tea.Brand = _context.Brands.FirstOrDefault(b => b.Id == tea.BrandId);
+
                 _context.Add(tea);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -109,11 +116,6 @@ namespace Teatastic.Controllers
 
             if (ModelState.IsValid)
             {
-                //try
-                //{
-                //    _context.Update(tea);
-                //    await _context.SaveChangesAsync();
-                //}
                 try
                 {
                     Tea existingTea = _context.Tea.Include(t => t.Functions).First(t => t.Id == tea.Id);

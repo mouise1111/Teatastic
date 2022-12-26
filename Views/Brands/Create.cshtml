@@ -1,4 +1,4 @@
-﻿@model Teatastic.Models.Tea
+﻿@model Teatastic.Models.Brand
 
 @{
     ViewData["Title"] = "Create";
@@ -7,7 +7,7 @@
 
 <h1>Create</h1>
 
-<h4>Tea</h4>
+<h4>Brand</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,18 +17,6 @@
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Functions" class="control-label"></label>
-                <select multiple="multiple" asp-for="FunctionIds" class="form-control" asp-items="ViewBag.FunctionIds"></select>
-            </div><div class="form-group">
-                <label asp-for="Brand" class="control-label"></label>
-                <select multiple="multiple" asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

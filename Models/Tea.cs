@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
 
 namespace Teatastic.Models
 {
@@ -17,11 +18,15 @@ namespace Teatastic.Models
         [Required]
         public double Price { get; set; }
 
-        //Relationship
+        //Relationships
         public List<Function>? Functions { get; set; }
 
         [NotMapped]
         public List<int> FunctionIds { get; set; }
+
+
+        public int BrandId { get; set; }
+        public Brand Brand { get; set; }
 
     }
 }
