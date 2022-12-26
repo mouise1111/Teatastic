@@ -13,9 +13,7 @@ namespace Teatastic.Models
             // Crear ROLES
             List<IdentityRole> roles = new List<IdentityRole>() {
                 new IdentityRole { Name = "Administrator", NormalizedName = "ADMINISTRATOR" },
-                new IdentityRole { Name = "Coach", NormalizedName = "COACH" },
-                new IdentityRole { Name = "Swimmer", NormalizedName = "SWIMMER" },
-                new IdentityRole { Name = "Visitor", NormalizedName = "VISITOR" }
+                new IdentityRole { Name = "Client", NormalizedName = "CLIENT" }
             };
             modelBuilder.Entity<IdentityRole>().HasData(roles);
 
