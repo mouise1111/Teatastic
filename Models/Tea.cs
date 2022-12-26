@@ -26,7 +26,7 @@ namespace Teatastic.Models
 
 
         public int BrandId { get; set; }
-        public Brand Brand { get; set; }
+        public Brand? Brand { get; set; }
 
     }
 }
