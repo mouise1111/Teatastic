@@ -15,7 +15,8 @@ namespace Teatastic.Controllers
 
         public IActionResult Index()
         {
-            return View();
+
+            return RedirectToAction("Index", "Teas");
         }
 
         public IActionResult Privacy()

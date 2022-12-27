@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using Teatastic.Data;
 using Teatastic.Models;
 
 namespace Teatastic.Controllers
 {
+    [Authorize(Roles = "SystemAdministrator")]
     public class FunctionsController : Controller
     {
         private readonly TeatasticContext _context;

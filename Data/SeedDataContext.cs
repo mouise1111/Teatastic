@@ -55,7 +55,7 @@ namespace Teatastic.Data
 
                     context.UserRoles.AddRange
                         (
-                            new IdentityUserRole<string> { RoleId = "User", UserId = admin.Id },
+                            new IdentityUserRole<string> { RoleId = "User", UserId = dummy.Id },
                             new IdentityUserRole<string> { RoleId = "UserAdministrator", UserId = admin.Id },
                             new IdentityUserRole<string> { RoleId = "SystemAdministrator", UserId = admin.Id }
                         );

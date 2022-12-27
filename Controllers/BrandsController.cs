@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +46,7 @@ namespace Teatastic.Controllers
         }
 
         // GET: Brands/Create
+        [Authorize(Roles = "SystemAdministrator")]
         public IActionResult Create()
         {
             return View();
@@ -52,6 +55,7 @@ namespace Teatastic.Controllers
         // POST: Brands/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "SystemAdministrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name")] Brand brand)
@@ -66,6 +70,7 @@ namespace Teatastic.Controllers
         }
 
         // GET: Brands/Edit/5
+        [Authorize(Roles = "SystemAdministrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Brands == null)
@@ -84,6 +89,7 @@ namespace Teatastic.Controllers
         // POST: Brands/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "SystemAdministrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Brand brand)
@@ -117,6 +123,7 @@ namespace Teatastic.Controllers
         }
 
         // GET: Brands/Delete/5
+        [Authorize(Roles = "SystemAdministrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Brands == null)
@@ -135,6 +142,7 @@ namespace Teatastic.Controllers
         }
 
         // POST: Brands/Delete/5
+        [Authorize(Roles = "SystemAdministrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

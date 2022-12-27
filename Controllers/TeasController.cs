@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using Teatastic.Data;
 using Teatastic.Models;
 
@@ -41,6 +43,7 @@ namespace Teatastic.Controllers
             return View(tea);
         }
 
+        [Authorize(Roles = "SystemAdministrator")]
         // GET: Teas/Create
         public IActionResult Create()
         {
@@ -52,7 +55,7 @@ namespace Teatastic.Controllers
 
         // POST: Teas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "SystemAdministrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Price,FunctionIds,BrandId")] Tea tea)
@@ -80,6 +83,7 @@ namespace Teatastic.Controllers
         }
 
         // GET: Teas/Edit/5
+        [Authorize(Roles = "SystemAdministrator")]
         public async Task<IActionResult> Edit(int? id)
         {
 
@@ -104,7 +108,7 @@ namespace Teatastic.Controllers
 
         // POST: Teas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "SystemAdministrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,FunctionIds")] Tea tea)
@@ -147,6 +151,7 @@ namespace Teatastic.Controllers
         }
 
         // GET: Teas/Delete/5
+        [Authorize(Roles = "SystemAdministrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Tea == null)
@@ -165,6 +170,7 @@ namespace Teatastic.Controllers
         }
 
         // POST: Teas/Delete/5
+        [Authorize(Roles = "SystemAdministrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
