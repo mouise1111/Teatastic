@@ -12,8 +12,8 @@ using Teatastic.Data;
 namespace Teatastic.Migrations
 {
     [DbContext(typeof(TeatasticContext))]
-    [Migration("20221226232124_DummyDataMigration")]
-    partial class DummyDataMigration
+    [Migration("20221228015053_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

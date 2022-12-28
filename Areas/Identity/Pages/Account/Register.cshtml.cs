@@ -65,6 +65,14 @@ namespace Teatastic.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name = "User Name")]
+            public string UserName { get; set; }
+            /// <summary>
+            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+            ///     directly from your code. This API may change or be removed in future releases.
+            /// </summary>
+            /// 
+            [Required]
             [StringLength(255, ErrorMessage = "The first name field should have a maximum of 255 characters")]
             [Display(Name = "Firstname")]
             public string FirstName { get; set; }
@@ -117,11 +125,12 @@ namespace Teatastic.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
+                
+                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

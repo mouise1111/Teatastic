@@ -16,6 +16,11 @@ builder.Services.AddDefaultIdentity<TeatasticUser>(options => options.SignIn.Req
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<TeatasticContext>();
 
+// Manueel toegevoegd om te werken met Identity Framework
+builder.Services.AddDbContext<global::Teatastic.Data.TeatasticContext>((global::Microsoft.EntityFrameworkCore.DbContextOptionsBuilder options) =>
+    options.UseSqlServer(connectionString));
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -30,12 +35,35 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+//builder.Services.Configure<IdentityOptions>(options =>
+//{
+//    // Password settings.
+//    options.Password.RequireDigit = true;
+//    options.Password.RequireLowercase = true;
+//    options.Password.RequireNonAlphanumeric = true;
+//    options.Password.RequireUppercase = true;
+//    options.Password.RequiredLength = 6;
+//    options.Password.RequiredUniqueChars = 1;
+
+//    // Lockout settings.
+//    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+//    options.Lockout.MaxFailedAccessAttempts = 5;
+//    options.Lockout.AllowedForNewUsers = true;
+
+//    // User settings.
+//    options.User.AllowedUserNameCharacters =
+//    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+//    options.User.RequireUniqueEmail = false;
+//});
+
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var userManager = services.GetRequiredService<UserManager<TeatasticUser>>();
     await SeedDataContext.Initialize(services, userManager);
 }
+
 
 
 app.UseHttpsRedirection();

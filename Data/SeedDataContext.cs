@@ -26,7 +26,7 @@ namespace Teatastic.Data
                         Email = "john@doe.com",
                         EmailConfirmed = true,
                         LockoutEnabled = true,
-                        UserName = "dummy",
+                        UserName = "john@doe.com",
                         FirstName = "john",
                         LastName = "doe",
                     };
@@ -35,7 +35,7 @@ namespace Teatastic.Data
                         Email = "admin@teatastic.be",
                         EmailConfirmed = true,
                         LockoutEnabled = false,
-                        UserName = "Administrator",
+                        UserName = "admin@teatastic.be",
                         FirstName = "Administrator",
                         LastName = "Teatastic"
                     };
