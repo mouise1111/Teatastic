@@ -58,7 +58,7 @@ namespace Teatastic.Controllers
         [Authorize(Roles = "SystemAdministrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Brand brand)
+        public async Task<IActionResult> Create([Bind("Id,Name,Logo")] Brand brand)
         {
             if (ModelState.IsValid)
             {

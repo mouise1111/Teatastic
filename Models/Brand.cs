@@ -15,7 +15,7 @@ namespace Teatastic.Models
         public string Name { get; set; }
 
         [NotMapped]
-        public Image? Logo { get; set; }
+        public string? Logo { get; set; }
 
         public List<Tea>? Teas{ get; set; }
 
