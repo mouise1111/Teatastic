@@ -86,6 +86,7 @@ namespace Teatastic.Data
                     context.SaveChanges();
                 }
 
+                //TODO: functions don't get added to seeded teas
                 if (!context.Tea.Any())
                 {
                     context.Tea.AddRange(

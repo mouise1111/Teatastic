@@ -169,6 +169,7 @@ namespace Teatastic.Controllers
             return View(tea);
         }
 
+        // TODO: Delete shouldn't remove from database, instead; make it invisible
         // POST: Teas/Delete/5
         [Authorize(Roles = "SystemAdministrator")]
         [HttpPost, ActionName("Delete")]
