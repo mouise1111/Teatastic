@@ -18,9 +18,23 @@ namespace Teatastic.Controllers
         }
 
         // GET: Teas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pg=1)
         {
-            return View(await _context.Tea.Include(t => t.Functions).Include(t => t.Brand).ToListAsync());
+           #region pager
+            List<Tea> teas = await _context.Tea.Include(t => t.Functions).Include(t => t.Brand).ToListAsync();
+            const int pageSize = 6;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+
+            int resCount = teas.Count();
+            var pager = new Pager(resCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var data = teas.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.Pager = pager;
+            #endregion
+            return View(data);
         }
 
         // GET: Teas/Details/5

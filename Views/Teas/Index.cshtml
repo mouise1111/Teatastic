@@ -8,6 +8,15 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Pager pager = new Pager();
+    int PageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        PageNo = pager.CurrentPage;
+    }
 }
 
 @if (User.IsInRole("SystemAdministrator"))
@@ -63,34 +72,45 @@
     </table>
 }
 else{
-    <div class="d-flex align-items-center"
-     style="display: flex; gap:4em; justify-content:center; flex-flow:wrap; text-align:center;">
-@foreach (var item in Model)
-{
-                <div class="card" style="width: 18rem;">
-                 @*<img src="..." class="card-img-top" alt="...">*@
-                  <div class="card-body">
-                <h5 class="card-title" style="text-transform:uppercase;">
-                @Html.DisplayFor(modelItem => item.Name)
-                        </h5>
-                <p class="card-text" style="font-weight:bold;">
-                @Html.DisplayFor(modelItem => item.Price)
-                        </p>
-                        <p class="card-text">
-                @foreach (var func in item.Functions)
-                {
-                            <p style="display:inline-block" class="badge bg-info"> @func.Name</p>
-                }
-                        </p>
+    <div class="d-flex align-items-center flex-wrap justify-content-center " style=" gap:4em; justify-content:center; flex-flow:wrap; text-align:center;">
+        @foreach (var item in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                @*<img src="..." class="card-img-top" alt="...">*@
+                <div class="card-body">
+                    <h5 class="card-title" style="text-transform:uppercase;">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </h5>
                     <p class="card-text" style="font-weight:bold;">
-                        @item.Brand.Name<p/>
-                        @*<a href="#" class="btn btn-primary">Add to Cart <i class="bi bi-cart"></i> </a>*@
-          </div>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </p>
+                    <p class="card-text">
+                        @foreach (var func in item.Functions)
+                        {
+                        <p style="display:inline-block" class="badge bg-info"> @func.Name</p>
+                        }
+                    </p>
+                    <p class="card-text" style="font-weight:bold;">
+                        @item.Brand.Name
+                    <p />
+                    </p>
+                    @*<a href="#" class="btn btn-primary">Add to Cart <i class="bi bi-cart"></i> </a>*@
+                </div>
+            </div>
+        }
+        <div class="container"> 
+            @if (pager.TotalPages > 0)
+            {
+                <ul class="pagination justify-content-end">
+                    @for(var pg = pager.StartPage; pg <= pager.EndPage; pg++)
+                    {
+                        <li class="page-item @(pg ==pager.CurrentPage ? "active" : "")">
+                            <a class="page-link" asp-controller="Teas" asp-action="Index" asp-route-pg="@pg">@pg</a>
+                        </li>
+                    }
+                </ul>
+            }
         </div>
-
-}
-</div>
+    </div>
 }
 
-
-@*PAGINATION*@
