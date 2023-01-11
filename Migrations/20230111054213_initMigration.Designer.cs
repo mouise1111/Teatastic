@@ -12,8 +12,8 @@ using Teatastic.Data;
 namespace Teatastic.Migrations
 {
     [DbContext(typeof(TeatasticContext))]
-    [Migration("20230110103526_addCartItems")]
-    partial class addCartItems
+    [Migration("20230111054213_initMigration")]
+    partial class initMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -277,7 +277,7 @@ namespace Teatastic.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("CartId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -309,6 +309,54 @@ namespace Teatastic.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Function");
+                });
+
+            modelBuilder.Entity("Teatastic.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("OrderPlaced")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderTotal")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Teatastic.Models.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("TeaId");
+
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("Teatastic.Models.Tea", b =>
@@ -414,6 +462,25 @@ namespace Teatastic.Migrations
                     b.Navigation("Tea");
                 });
 
+            modelBuilder.Entity("Teatastic.Models.OrderItem", b =>
+                {
+                    b.HasOne("Teatastic.Models.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Teatastic.Models.Tea", "Tea")
+                        .WithMany()
+                        .HasForeignKey("TeaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Tea");
+                });
+
             modelBuilder.Entity("Teatastic.Models.Tea", b =>
                 {
                     b.HasOne("Teatastic.Models.Brand", "Brand")
@@ -428,6 +495,11 @@ namespace Teatastic.Migrations
             modelBuilder.Entity("Teatastic.Models.Brand", b =>
                 {
                     b.Navigation("Teas");
+                });
+
+            modelBuilder.Entity("Teatastic.Models.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

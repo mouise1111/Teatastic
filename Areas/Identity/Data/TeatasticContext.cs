@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.Extensions.Hosting;
-using System.Reflection.Emit;
-using System.Reflection.Metadata;
 using Teatastic.Areas.Identity.Data;
 using Teatastic.Models;
 
@@ -19,7 +16,8 @@ public class TeatasticContext : IdentityDbContext<TeatasticUser>
     public DbSet<Teatastic.Models.Tea> Tea { get; set; }
     public DbSet<Brand> Brands { get; set; }
     public DbSet<CartItem> CartItems { get; set; }
-
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
