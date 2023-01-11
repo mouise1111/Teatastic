@@ -1,43 +1,30 @@
 ﻿@model Teatastic.Models.Tea
-@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer Localizer
-
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>@Localizer["Details"]</h1>
+<h1>Details</h1>
 
 <div>
     <h4>Tea</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @*@Html.DisplayNameFor(model => model.Name)*@
-            @Localizer["Name"]
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            @*@Html.DisplayNameFor(model => model.Price)*@
-            @Localizer["Price"]
+            @Html.DisplayNameFor(model => model.Price)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
         <dt class = "col-sm-2">
-            @*@Html.DisplayNameFor(model => model.Price)*@
-            @Localizer["Price"]
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @*@Html.DisplayNameFor(model => model.Functions)*@
-            @Localizer["Functions"]
+            @Html.DisplayNameFor(model => model.Functions)
         </dt>
         <dd class = "col-sm-10">
             @*@Html.DisplayFor(model => model.Price)*@
@@ -49,8 +36,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">@Localizer["Edit"]</a> |
-    @*<a asp-action="Index">Back to List</a>*@
-    <a asp-action="Index">@Localizer["Back to list"]</a>
-
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>

@@ -14,17 +14,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="6.0.11" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
     <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Resources\Views\Brands\" />
-    <Folder Include="Resources\Views\Functions\" />
-    <Folder Include="Resources\Views\Home\" />
-    <Folder Include="Resources\Views\Users\" />
   </ItemGroup>
 
 	<ItemGroup>

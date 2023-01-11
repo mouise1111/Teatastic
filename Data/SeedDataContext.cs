@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 using Teatastic.Areas.Identity.Data;
 using Teatastic.Models;
 
@@ -93,82 +96,26 @@ namespace Teatastic.Data
                             Price = 3.99,
                             BrandId = 1,
                             FunctionIds = new List<int> { 1, 2 }
-                        },
-                        new Tea
-                        {
-                            Name = "Green Tea",
-                            Price = 3.99,
-                            BrandId = 1,
-                            FunctionIds = new List<int> { 1, 2 }
-                        },
+                        }, 
                         new Tea
                         {
                             Name = "Black Tea",
                             Price = 6.99,
                             BrandId = 1,
                             FunctionIds = new List<int> { 2 }
-                        },
+                        }, 
                         new Tea
                         {
                             Name = "Yellow Tea",
                             Price = 2.99,
                             BrandId = 2,
                             FunctionIds = new List<int> { 1, 3 }
-                        },
-                        new Tea
-                        {
-                            Name = "White Tea",
-                            Price = 4.99,
-                            BrandId = 2,
-                            FunctionIds = new List<int> { 1 }
-                        },
-                        new Tea
-                        {
-                            Name = "Oolong Tea",
-                            Price = 5.99,
-                            BrandId = 3,
-                            FunctionIds = new List<int> { 2, 3 }
-                        },
-                        new Tea
-                        {
-                            Name = "Pu-erh Tea",
-                            Price = 8.99,
-                            BrandId = 1,
-                            FunctionIds = new List<int> { 1, 2, 3 }
-                        },
-                        new Tea
-                        {
-                            Name = "Darjeeling Tea",
-                            Price = 6.49,
-                            BrandId = 3,
-                            FunctionIds = new List<int> { 2 }
-                        },
-                        new Tea
-                        {
-                            Name = "Assam Tea",
-                            Price = 4.49,
-                            BrandId = 1,
-                            FunctionIds = new List<int> { 1, 3 }
-                        },
-                        new Tea
-                        {
-                            Name = "Ceylon Tea",
-                            Price = 7.99,
-                            BrandId = 2,
-                            FunctionIds = new List<int> { 1, 2 }
-                        },
-                        new Tea
-                        {
-                            Name = "Earl Grey Tea",
-                            Price = 5.99,
-                            BrandId = 3,
-                            FunctionIds = new List<int> { 3 }
                         }
                         );
-                    context.SaveChanges();
+                        context.SaveChanges();
                 }
-
-
+                
+                
                 #endregion
                 return null;
             }

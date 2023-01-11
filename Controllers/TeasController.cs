@@ -5,19 +5,16 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using Teatastic.Data;
 using Teatastic.Models;
-using Microsoft.Extensions.Localization;
 
 namespace Teatastic.Controllers
 {
     public class TeasController : Controller
     {
         private readonly TeatasticContext _context;
-        private readonly IStringLocalizer<HomeController> _localizer;
 
-        public TeasController(TeatasticContext context, IStringLocalizer<HomeController> localizer)
+        public TeasController(TeatasticContext context)
         {
             _context = context;
-            _localizer = localizer;
         }
 
         // GET: Teas

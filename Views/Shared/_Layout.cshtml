@@ -54,39 +54,20 @@
                                 <a class="dropdown-item" href="#">Separated link</a>
                             </div>
                         </li>*@
-                        
                     </ul>
-                        <form class="d-flex">
-                            <partial name="_LoginPartial.cshtml" />
-                        </form>
-                        <partial name="_LanguagePartial" />
+                    <form class="d-flex">
+                        <partial name="_LoginPartial.cshtml" />
+                    </form>
                 </div>
             </div>
         </nav>
-       @* @if (User.IsInRole("User"))
-        {
-            <div style="display:flex; justify-content:space-between; justify-content: end;">      
-                <div>
-                    <a href="#">
-                        <i class="bi bi-cart-fill"></i>
-                    </a>
-                </div>
-            </div>
-        }*@
-        
-        <div style="display:flex; justify-content:space-between; justify-content: end;" class="p-2">
-            <div>
-                <a asp-area="" asp-controller="Cart" asp-action="index" class="btn btn-secondary btn-sm">
-                    <i class="bi bi-cart-fill"></i>
-                </a>
-            </div>
-        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3 pt-3">
             @RenderBody()
         </main>
     </div>
+
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - Teatastic - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
