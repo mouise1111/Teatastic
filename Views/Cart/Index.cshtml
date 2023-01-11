@@ -7,7 +7,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th></th>
                 <th>Tea</th>
                 <th>Price</th>
                 <th>Quantity</th>
@@ -17,21 +16,21 @@
         <tbody>
             @foreach (var item in Model.CartItems)
             {
-                var teaTotal = item.Tea.Price * item.Quantity;
+                var teaTotal = (int)(item.Tea.Price * item.Quantity);
                 <tr>
                     <td>
-                        <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.Id">@item.Tea.Name</a>
+                        <a class="a-cleanup" asp-controller="Teas" asp-action="Details" asp-route-id="@item.Id">@item.Tea.Name</a>
                     </td>
                     <td>
                         @teaTotal.ToString("c")
                     </td>
                     <td>
-                        <a asp-controller="Cart" asp-action="ReduceQuantity" asp-route-id="@item.Tea.Id"><i class="fa-solid fa-minus"></i></a>
-                        <span class="badge badge-primary">@item.Quantity</span>
-                        <a asp-controller="Cart" asp-action="IncreaseQuantity" asp-route-id="@item.Tea.Id"><i class="fa-solid fa-plus"></i></a>
+                        <a asp-controller="Cart" asp-action="ReduceQuantity" asp-route-id="@item.Tea.Id"><i class="bi bi-dash-circle"></i></a>
+                        <span>@item.Quantity</span>
+                        <a asp-controller="Cart" asp-action="IncreaseQuantity" asp-route-id="@item.Tea.Id"><i class="bi bi-plus-circle"></i></a>
                     </td>
                     <td>
-                        <a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@item.Tea.Id" class="text-danger"><i class="fa-solid fa-xmark"></i></a>
+                        <a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@item.Tea.Id" class="text-danger"><i class="bi bi-file-x"></i></a>
                     </td>
                 </tr>
             }
@@ -51,10 +50,13 @@
         </tfoot>
     </table>
 
-    <a class="a-cleanup" asp-controller="Order" asp-action="Checkout"><div class="btn btn-success float-right mr-5">Checkout <i class="fa-solid fa-angles-right"></i></div> </a>
-    <a class="a-cleanup" asp-controller="Cart" asp-action="ClearCart"><div class="btn btn-danger float-right mr-5"><i class="fa-solid fa-trash-can"></i> Empty Cart</div> </a>
+    <a asp-controller="Order" asp-action="Checkout"><div class="btn btn-success float-right mr-5">Checkout <i class="bi bi-cash"></i></div></a>
+    <a asp-controller="Cart" asp-action="ClearCart"><div class="btn btn-danger float-right mr-5">Empty Cart <i class="bi bi-trash"></i></div></a>
+    <a asp-controller="Teas" asp-action="Index"><div class="btn btn-info float-right mr-5">Back to list <i class="bi bi-arrow-return-left"></i></div></a>
 }
 else
 {
     <h3 class="text-center">Cart is empty</h3>
+    <a asp-controller="Teas" asp-action="Index"><div class="btn btn-info float-right mr-5">Back to list <i class="bi bi-arrow-return-left"></i></div></a>
+
 }
