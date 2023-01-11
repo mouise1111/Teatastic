@@ -1,14 +1,12 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using NETCore.MailKit.Infrastructure.Internal;
 using Teatastic.Areas.Identity.Data;
 using Teatastic.Data;
-using Microsoft.AspNetCore.Identity;
 using Teatastic.Models;
-using static System.Formats.Asn1.AsnWriter;
-using Microsoft.Extensions.Hosting;
-using NETCore.MailKit.Infrastructure.Internal;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Teatastic.Services;
-using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("TeatasticContextConnection") ?? throw new InvalidOperationException("Connection string 'TeatasticContextConnection' not found.");
@@ -27,7 +25,15 @@ builder.Services.AddDbContext<global::Teatastic.Data.TeatasticContext>((global::
     options.UseSqlServer(connectionString));
 
 //cart 
-builder.Services.AddScoped<Cart>();
+//builder.Services.AddScoped<Cart>();
+builder.Services.AddScoped<Cart>(sp => Cart.GetCart(sp));
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+    //options.IdleTimeout = TimeSpan.FromSeconds(10);
+});
 
 
 // Add services to the container.
@@ -108,6 +114,8 @@ app.UseRouting();
 app.UseAuthentication(); ;
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
