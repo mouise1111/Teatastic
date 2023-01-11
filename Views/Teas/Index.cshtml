@@ -20,6 +20,10 @@
         PageNo = pager.CurrentPage;
     }
 }
+<partial name="_Notification" />
+
+<div style="text-align:center" class="mb-2"> Items in cart: @ViewData["CartItemsCount"]</div>
+
 
 @if (User.IsInRole("SystemAdministrator"))
 {
@@ -85,7 +89,8 @@ else{
                 @*<img src="..." class="card-img-top" alt="...">*@
                 <div class="card-body">
                     <h5 class="card-title" style="text-transform:uppercase;">
-                        @Html.DisplayFor(modelItem => item.Name)
+                        <a asp-controller="Teas" asp-action="Details" asp-route-id="@item.Id" class="text-info">@item.Name</a>
+                        @*@Html.DisplayFor(modelItem => item.Name)*@
                     </h5>
                     <p class="card-text" style="font-weight:bold;">
                         @Html.DisplayFor(modelItem => item.Price)
@@ -100,7 +105,8 @@ else{
                         @item.Brand.Name
                     <p />
                     </p>
-                    <a class="btn btn-primary" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id">Add to Cart <i class="bi bi-cart"></i> </a>
+                    <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id" class="btn btn-primary float-right store-btn">Add to cart <i class="bi bi-cart"></i></a>
+
                 </div>
             </div>
         }
@@ -111,9 +117,7 @@ else{
                     @for(var pg = pager.StartPage; pg <= pager.EndPage; pg++)
                     {
                         <li class="page-item @(pg ==pager.CurrentPage ? "active" : "")">
-                            <a class="page-link" asp-controller="Teas" asp-action="Index" asp-route-pg="@pg"
-                            style="background-color: var(--bs-pagination-active-bg);
-                            border-color: var(--bs-pagination-active-border-color);">@pg</a>
+                            <a class="page-link" asp-controller="Teas" asp-action="Index" asp-route-pg="@pg">@pg</a>
                         </li>
                     }
                 </ul>

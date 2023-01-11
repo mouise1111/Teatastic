@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using System.Data;
 using Teatastic.Data;
 using Teatastic.Models;
-using Microsoft.Extensions.Localization;
 
 namespace Teatastic.Controllers
 {
@@ -13,17 +13,19 @@ namespace Teatastic.Controllers
     {
         private readonly TeatasticContext _context;
         private readonly IStringLocalizer<HomeController> _localizer;
+        private readonly Cart _cart;
 
-        public TeasController(TeatasticContext context, IStringLocalizer<HomeController> localizer)
+        public TeasController(TeatasticContext context, IStringLocalizer<HomeController> localizer, Cart cart)
         {
             _context = context;
             _localizer = localizer;
+            _cart = cart;
         }
 
         // GET: Teas
-        public async Task<IActionResult> Index(int pg=1)
+        public async Task<IActionResult> Index(int pg = 1)
         {
-           #region pager
+            #region pager
             List<Tea> teas = await _context.Tea.Include(t => t.Functions).Include(t => t.Brand).ToListAsync();
             const int pageSize = 6;
             if (pg < 1)
@@ -37,6 +39,9 @@ namespace Teatastic.Controllers
             var data = teas.Skip(recSkip).Take(pager.PageSize).ToList();
             this.ViewBag.Pager = pager;
             #endregion
+
+            ViewData["CartItemsCount"] = _cart.GetAllCartItems()?.Count ?? 0;
+
             return View(data);
         }
 
