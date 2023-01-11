@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Teatastic.Areas.Identity.Data;
 using Teatastic.Data;
 using Teatastic.Models;
 
@@ -12,7 +10,6 @@ namespace Teatastic.Controllers
     {
         private readonly TeatasticContext _context;
         private readonly Cart _cart;
-        private readonly UserManager<TeatasticUser> _userManager;
 
         public CartController(TeatasticContext context, Cart cart)
         {
@@ -34,10 +31,11 @@ namespace Teatastic.Controllers
 
             if (selectedTea != null)
             {
-                _cart.AddToCart(selectedTea, 1, _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).Id);
+                _cart.AddToCart(selectedTea, 1);
             }
 
-            return RedirectToAction("Index", "Store");
+            TempData["succes"] = "Tea added to cart succesfully";
+            return RedirectToAction("Index", "Teas");
         }
 
         public IActionResult RemoveFromCart(int id)
