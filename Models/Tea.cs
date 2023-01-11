@@ -16,6 +16,7 @@ namespace Teatastic.Models
 
 
         [Required]
+        //[DataType(DataType.Currency)]
         public double Price { get; set; }
 
         //Relationships
