@@ -17,9 +17,9 @@ public class TeatasticContext : IdentityDbContext<TeatasticUser>
     }
     public DbSet<Teatastic.Models.Function> Function { get; set; }
     public DbSet<Teatastic.Models.Tea> Tea { get; set; }
-
-
     public DbSet<Brand> Brands { get; set; }
+    public DbSet<CartItem> CartItems { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

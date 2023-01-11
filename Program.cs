@@ -8,12 +8,15 @@ using Microsoft.Extensions.Hosting;
 using NETCore.MailKit.Infrastructure.Internal;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Teatastic.Services;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("TeatasticContextConnection") ?? throw new InvalidOperationException("Connection string 'TeatasticContextConnection' not found.");
 
 builder.Services.AddDbContext<TeatasticContext>(options =>
     options.UseSqlServer(connectionString));
+//for cart
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDefaultIdentity<TeatasticUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
@@ -23,11 +26,12 @@ builder.Services.AddDefaultIdentity<TeatasticUser>(options => options.SignIn.Req
 builder.Services.AddDbContext<global::Teatastic.Data.TeatasticContext>((global::Microsoft.EntityFrameworkCore.DbContextOptionsBuilder options) =>
     options.UseSqlServer(connectionString));
 
+//cart 
+builder.Services.AddScoped<Cart>();
 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddTransient<IEmailSender, MailKitEmailSender>();
 builder.Services.Configure<MailKitOptions>(options =>
 {
@@ -42,7 +46,22 @@ builder.Services.Configure<MailKitOptions>(options =>
     options.Security = false;  // true zet ssl or tls aan
 });
 
+//localisation
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddMvc()
+.AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+.AddDataAnnotationsLocalization();
+
+
 var app = builder.Build();
+
+var supportedCultures = new[] { "en-US", "fr", "nl" };
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+       .AddSupportedCultures(supportedCultures)
+       .AddSupportedUICultures(supportedCultures);
+app.UseRequestLocalization(localizationOptions);
+
+Language.InitLanguages();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -80,7 +99,6 @@ using (var scope = app.Services.CreateScope())
     var userManager = services.GetRequiredService<UserManager<TeatasticUser>>();
     await SeedDataContext.Initialize(services, userManager);
 }
-
 
 
 app.UseHttpsRedirection();
