@@ -5,7 +5,7 @@ using Teatastic.Models;
 
 namespace Teatastic.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "User")]
     public class CartController : Controller
     {
         private readonly TeatasticContext _context;
@@ -77,13 +77,14 @@ namespace Teatastic.Controllers
         public IActionResult ClearCart()
         {
             _cart.ClearCart();
-
+            //TODO: cartitems need to be removed in db
+            //_context.CartItems.Remove();
             return RedirectToAction("Index");
         }
 
         public Tea GetTeaById(int id)
         {
-            return _context.Tea.FirstOrDefault(b => b.Id == id);
+            return _context.Tea.FirstOrDefault(t => t.Id == id);
         }
     }
 }
