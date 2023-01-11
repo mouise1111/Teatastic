@@ -125,7 +125,7 @@ namespace Teatastic.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                
+
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 user.FirstName = Input.FirstName;
@@ -148,7 +148,7 @@ namespace Teatastic.Areas.Identity.Pages.Account
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>. \n We wish you a teatastic day!");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
