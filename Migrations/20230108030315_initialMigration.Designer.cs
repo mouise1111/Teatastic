@@ -12,8 +12,8 @@ using Teatastic.Data;
 namespace Teatastic.Migrations
 {
     [DbContext(typeof(TeatasticContext))]
-    [Migration("20230105201605_addCartTable")]
-    partial class addCartTable
+    [Migration("20230108030315_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -269,43 +269,6 @@ namespace Teatastic.Migrations
                     b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("Teatastic.Models.Cart", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cart");
-                });
-
-            modelBuilder.Entity("Teatastic.Models.CartItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("CartId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("TeaId");
-
-                    b.ToTable("CartItems");
-                });
-
             modelBuilder.Entity("Teatastic.Models.Function", b =>
                 {
                     b.Property<int>("Id")
@@ -415,23 +378,6 @@ namespace Teatastic.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Teatastic.Models.CartItem", b =>
-                {
-                    b.HasOne("Teatastic.Models.Cart", null)
-                        .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Teatastic.Models.Tea", "Tea")
-                        .WithMany()
-                        .HasForeignKey("TeaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Tea");
-                });
-
             modelBuilder.Entity("Teatastic.Models.Tea", b =>
                 {
                     b.HasOne("Teatastic.Models.Brand", "Brand")
@@ -446,11 +392,6 @@ namespace Teatastic.Migrations
             modelBuilder.Entity("Teatastic.Models.Brand", b =>
                 {
                     b.Navigation("Teas");
-                });
-
-            modelBuilder.Entity("Teatastic.Models.Cart", b =>
-                {
-                    b.Navigation("CartItems");
                 });
 #pragma warning restore 612, 618
         }

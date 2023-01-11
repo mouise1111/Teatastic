@@ -12,8 +12,8 @@ using Teatastic.Data;
 namespace Teatastic.Migrations
 {
     [DbContext(typeof(TeatasticContext))]
-    [Migration("20221228015053_initialMigration")]
-    partial class initialMigration
+    [Migration("20230110103526_addCartItems")]
+    partial class addCartItems
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -269,6 +269,31 @@ namespace Teatastic.Migrations
                     b.ToTable("Brands");
                 });
 
+            modelBuilder.Entity("Teatastic.Models.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeaId");
+
+                    b.ToTable("CartItems");
+                });
+
             modelBuilder.Entity("Teatastic.Models.Function", b =>
                 {
                     b.Property<int>("Id")
@@ -376,6 +401,17 @@ namespace Teatastic.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Teatastic.Models.CartItem", b =>
+                {
+                    b.HasOne("Teatastic.Models.Tea", "Tea")
+                        .WithMany()
+                        .HasForeignKey("TeaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tea");
                 });
 
             modelBuilder.Entity("Teatastic.Models.Tea", b =>

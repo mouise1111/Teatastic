@@ -267,16 +267,6 @@ namespace Teatastic.Migrations
                     b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("Teatastic.Models.Cart", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cart");
-                });
-
             modelBuilder.Entity("Teatastic.Models.CartItem", b =>
                 {
                     b.Property<int>("Id")
@@ -285,9 +275,9 @@ namespace Teatastic.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CartId")
+                    b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -296,8 +286,6 @@ namespace Teatastic.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CartId");
 
                     b.HasIndex("TeaId");
 
@@ -415,12 +403,6 @@ namespace Teatastic.Migrations
 
             modelBuilder.Entity("Teatastic.Models.CartItem", b =>
                 {
-                    b.HasOne("Teatastic.Models.Cart", null)
-                        .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Teatastic.Models.Tea", "Tea")
                         .WithMany()
                         .HasForeignKey("TeaId")
@@ -444,11 +426,6 @@ namespace Teatastic.Migrations
             modelBuilder.Entity("Teatastic.Models.Brand", b =>
                 {
                     b.Navigation("Teas");
-                });
-
-            modelBuilder.Entity("Teatastic.Models.Cart", b =>
-                {
-                    b.Navigation("CartItems");
                 });
 #pragma warning restore 612, 618
         }
