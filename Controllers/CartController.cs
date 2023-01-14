@@ -21,7 +21,6 @@ namespace Teatastic.Controllers
         {
             var items = _cart.GetAllCartItems();
             _cart.CartItems = items;
-
             return View(_cart);
         }
 
@@ -34,7 +33,7 @@ namespace Teatastic.Controllers
                 _cart.AddToCart(selectedTea, 1);
             }
 
-            TempData["succes"] = "Tea added to cart succesfully";
+            TempData["success"] = "Tea added to cart succesfully";
             return RedirectToAction("Index", "Teas");
         }
 

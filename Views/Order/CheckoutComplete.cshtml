@@ -18,10 +18,10 @@
             var itemTotal = item.Tea.Price * item.Quantity;
             <tr>
                 <td>
-                    @*<a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.Id"><img src="@item.Tea.ImageUrl" style="height: 4em"></a>*@
+                    @*<a class="a-cleanup" asp-controller="Teas" asp-action="Details" asp-route-id="@item.Id"><img src="@item.Tea.ImageUrl" style="height: 4em"></a>*@
                 </td>
                 <td>
-                    <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.Id">@item.Tea.Name</a>
+                    <a class="a-cleanup" asp-controller="Teas" asp-action="Details" asp-route-id="@item.Id">@item.Tea.Name</a>
                 </td>
                 <td>
                     @itemTotal.ToString("c")

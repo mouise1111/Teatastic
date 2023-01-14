@@ -25,6 +25,34 @@ namespace Teatastic.Controllers
         // GET: Teas
         public async Task<IActionResult> Index(int pg = 1)
         {
+            //ViewData["CurrentSort"] = sortOrder;
+            //ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "nameDesc" : "";
+            ////ViewData["DateSortParam"] = sortOrder == "date" ? "dateDesc" : "date";
+
+            //var teas = from t in _context.Tea select t;
+
+            ////if (!String.IsNullOrEmpty(searchString))
+            ////{
+            ////    teas = teas.Where(s =>
+            ////                            s.Name.Contains(searchString) ||
+            ////                            s.FirstMidName.Contains(searchString));
+            ////}
+
+            //switch (sortOrder)
+            //{
+            //    case "nameDesc":
+            //        teas = teas.OrderByDescending(t => t.Name);
+            //        break;
+            //    case "price":
+            //        teas = teas.OrderBy(t => t.Price);
+            //        break;
+            //    case "dateDesc":
+            //        teas = teas.OrderByDescending(t => t.Price);
+            //        break;
+            //    default:
+            //        teas = teas.OrderBy(t => t.Name);
+            //        break;
+            //}
             #region pager
             List<Tea> teas = await _context.Tea.Include(t => t.Functions).Include(t => t.Brand).ToListAsync();
             const int pageSize = 6;
@@ -33,7 +61,7 @@ namespace Teatastic.Controllers
                 pg = 1;
             }
 
-            int resCount = teas.Count();
+            int resCount = teas.Count;
             var pager = new Pager(resCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
             var data = teas.Skip(recSkip).Take(pager.PageSize).ToList();
