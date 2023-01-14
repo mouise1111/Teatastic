@@ -22,7 +22,7 @@
                 if (l.Id != languageId)
                 {
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Languages" asp-action="ChangeLanguage" asp-route-id="@l.Id" asp-route-returnUrl=@thisPage>@l.Name</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ChangeLanguage" asp-route-id="@l.Id" asp-route-returnUrl=@thisPage>@l.Name</a>
                     </li>
 
                 }
