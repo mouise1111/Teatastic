@@ -117,34 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add to cart" xml:space="preserve">
-    <value>Ajouter au panier</value>
-  </data>
-  <data name="Brand" xml:space="preserve">
-    <value>Marque</value>
-  </data>
-  <data name="Create New" xml:space="preserve">
-    <value>Créer nouveau</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Effacer</value>
-  </data>
-  <data name="Details" xml:space="preserve">
-    <value>Details</value>
-  </data>
   <data name="Edit" xml:space="preserve">
     <value>Modifier</value>
-  </data>
-  <data name="Functions" xml:space="preserve">
-    <value>Fonctions</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
   </data>
-  <data name="Price" xml:space="preserve">
-    <value>Prix</value>
+  <data name="Back to list" xml:space="preserve">
+    <value>Retour a la liste</value>
   </data>
-  <data name="Tea" xml:space="preserve">
-    <value>Thé</value>
+  <data name="Save" xml:space="preserve">
+    <value>Sauvegarder</value>
   </data>
 </root>

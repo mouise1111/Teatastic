@@ -24,7 +24,7 @@
 
 @if (User.IsInRole("SystemAdministrator"))
 {
-    <h1>Index Tea</h1>
+    <h1>Index @Localizer["Tea"]</h1>
 
     <p>
         <a asp-action="Create">@Localizer["Create New"]</a>
@@ -33,19 +33,15 @@
         <thead>
             <tr>
                 <th>
-                    @*@Html.DisplayNameFor(model => model.Name)*@
                     @Localizer["Name"]
                 </th>
                 <th>
-                    @*@Html.DisplayNameFor(model => model.Price)*@
                     @Localizer["Price"]
                 </th>
                 <th>
-                    @*@Html.DisplayNameFor(model => model.Functions)*@
                     @Localizer["Functions"]
                 </th>
                 <th>
-                    @*@Html.DisplayNameFor(model => model.Brand)*@
                     @Localizer["Brand"]
                 </th>
                 <th></th>
@@ -89,7 +85,6 @@ else{
                 <div class="card-body">
                     <h5 class="card-title" style="text-transform:uppercase;">
                         <a asp-controller="Teas" asp-action="Details" asp-route-id="@item.Id" class="text-info">@item.Name</a>
-                        @*@Html.DisplayFor(modelItem => item.Name)*@
                     </h5>
                     <p class="card-text" style="font-weight:bold;">
                         @Html.DisplayFor(modelItem => item.Price)

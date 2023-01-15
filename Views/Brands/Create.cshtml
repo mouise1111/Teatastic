@@ -1,22 +1,24 @@
 ﻿@model Teatastic.Models.Brand
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>@Localizer["Create"]</h1>
 
-<h4>Brand</h4>
+<h4>@Localizer["Brand"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">@Localizer["Name"]</label>
                 <input asp-for="Name" class="form-control" />
-                <label asp-for="Logo" class="control-label"></label>
+                <label asp-for="Logo" class="control-label">@Localizer["Logo"]</label>
                 <input asp-for="Logo" class="form-control" />
 @*                <label asp-for="Logo" class="control-label"></label>
                 <input asp-for="Logo" type="file" class="form-control"/>*@
@@ -24,14 +26,14 @@
                 <span asp-validation-for="Logo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="@Localizer["Create"]" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@Localizer["Back to list"]</a>
 </div>
 
 @section Scripts {

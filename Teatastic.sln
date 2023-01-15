@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teatastic", "Teatastic.csproj", "{1BABB6D6-0650-45F6-95A7-345D6F5391E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Teatastic", "Teatastic.csproj", "{1BABB6D6-0650-45F6-95A7-345D6F5391E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		RESX_PrefixTranslations = False
 		SolutionGuid = {4BDD9A51-955C-49B4-92EB-BCFCEA352D9A}
 	EndGlobalSection
 EndGlobal

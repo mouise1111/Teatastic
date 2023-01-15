@@ -144,4 +144,7 @@
   <data name="Price" xml:space="preserve">
     <value>Prijs</value>
   </data>
+  <data name="Tea" xml:space="preserve">
+    <value>Thee</value>
+  </data>
 </root>

@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="Resources\Views\Brands\Index.nl.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Views\Brands\Index.nl.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.13" />
@@ -21,10 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Resources\Views\Brands\" />
-    <Folder Include="Resources\Views\Functions\" />
     <Folder Include="Resources\Views\Home\" />
-    <Folder Include="Resources\Views\Users\" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -33,6 +38,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Views\Brands\Edit.fr.resx">
+	    <SubType>Designer</SubType>
+	  </EmbeddedResource>
 	  <EmbeddedResource Update="Resources\Views\Teas\Details.nl.resx">
 	    <Generator></Generator>
 	  </EmbeddedResource>
