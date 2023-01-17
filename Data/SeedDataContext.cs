@@ -62,14 +62,16 @@ namespace Teatastic.Data
                 TeatasticUser dummyUser = context.Users.FirstOrDefault(u => u.UserName == "dummy");
                 TeatasticUser administrator = context.Users.FirstOrDefault(u => u.UserName == "Administrator");
 
+
                 #region seeder for models
+
+                Function f1 = new Function { Name = "Relaxing" };
+                Function f2 = new Function { Name = "Energizing" };
+                Function f3 = new Function { Name = "Detoxifying" };
+
                 if (!context.Function.Any())
                 {
-                    context.Function.AddRange(
-                        new Function { Name = "Relaxing" },
-                        new Function { Name = "Energizing" },
-                        new Function { Name = "Detoxifying" }
-                        );
+                    context.Function.AddRange(f1, f2, f3);
                     context.SaveChanges();
                 }
 
@@ -83,86 +85,89 @@ namespace Teatastic.Data
                     context.SaveChanges();
                 }
 
-                //TODO: functions don't get added to seeded teas
                 if (!context.Tea.Any())
                 {
                     context.Tea.AddRange(
                         new Tea
                         {
-                            Name = "Green Tea",
+                            Name = "Mango Tea",
                             Price = 3.99,
                             BrandId = 1,
-                            FunctionIds = new List<int> { 1, 2 }
+                            Functions = new List<Function>
+                            {
+                                f1,
+                                f2
+                            }
                         },
                         new Tea
                         {
                             Name = "Green Tea",
                             Price = 3.99,
                             BrandId = 1,
-                            FunctionIds = new List<int> { 1, 2 }
+                            Functions = new List<Function> { f1, f2 }
                         },
                         new Tea
                         {
                             Name = "Black Tea",
                             Price = 6.99,
                             BrandId = 1,
-                            FunctionIds = new List<int> { 2 }
+                            Functions = new List<Function> { f2 }
                         },
                         new Tea
                         {
                             Name = "Yellow Tea",
                             Price = 2.99,
                             BrandId = 2,
-                            FunctionIds = new List<int> { 1, 3 }
+                            Functions = new List<Function> { f1, f3 }
                         },
                         new Tea
                         {
                             Name = "White Tea",
                             Price = 4.99,
                             BrandId = 2,
-                            FunctionIds = new List<int> { 1 }
+                            Functions = new List<Function> { f1 }
                         },
                         new Tea
                         {
                             Name = "Oolong Tea",
                             Price = 5.99,
                             BrandId = 3,
-                            FunctionIds = new List<int> { 2, 3 }
+                            Functions = new List<Function> { f2, f3 }
                         },
                         new Tea
                         {
                             Name = "Pu-erh Tea",
                             Price = 8.99,
                             BrandId = 1,
-                            FunctionIds = new List<int> { 1, 2, 3 }
+                            Functions = new List<Function> { f1, f2, f3 }
                         },
                         new Tea
                         {
                             Name = "Darjeeling Tea",
                             Price = 6.49,
                             BrandId = 3,
-                            FunctionIds = new List<int> { 2 }
+                            Functions = new List<Function> { f2 }
                         },
                         new Tea
                         {
                             Name = "Assam Tea",
                             Price = 4.49,
                             BrandId = 1,
-                            FunctionIds = new List<int> { 1, 3 }
+                            Functions = new List<Function> { f1, f3 }
                         },
                         new Tea
                         {
                             Name = "Ceylon Tea",
                             Price = 7.99,
                             BrandId = 2,
-                            FunctionIds = new List<int> { 1, 2 }
+                            Functions = new List<Function> { f1, f2 }
                         },
                         new Tea
                         {
                             Name = "Earl Grey Tea",
                             Price = 5.99,
                             BrandId = 3,
-                            FunctionIds = new List<int> { 3 }
+                            Functions = new List<Function> { f3 }
                         }
                         );
                     context.SaveChanges();
