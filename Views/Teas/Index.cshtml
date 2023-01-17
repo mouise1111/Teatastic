@@ -75,8 +75,10 @@
     </table>
 }
 else{
-    <div style="text-align:center" class="mb-2"> Items in cart: @ViewData["CartItemsCount"]</div>
-
+    @if (User.IsInRole("User"))
+    {
+        <div style="text-align:center" class="mb-2"> Items in cart: @ViewData["CartItemsCount"]</div>
+    }
     <div class="d-flex align-items-center flex-wrap justify-content-center " style=" gap:4em; justify-content:center; flex-flow:wrap; text-align:center;">
         @foreach (var item in Model)
         {
