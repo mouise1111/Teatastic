@@ -65,7 +65,8 @@
                 </div>
             </div>
         </nav>
-        @if (User.IsInRole("User"))
+
+        @if (User.IsInRole("SystemAdministrator") == false && User.IsInRole("UserAdministrator") == false)
         {
             <div style="display:flex; justify-content:space-between; justify-content: end;" class="p-2">
                 <div>
