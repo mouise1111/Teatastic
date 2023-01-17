@@ -12,14 +12,14 @@ using Teatastic.Data;
 namespace Teatastic.Migrations
 {
     [DbContext(typeof(TeatasticContext))]
-    [Migration("20230111054213_initMigration")]
+    [Migration("20230117145423_initMigration")]
     partial class initMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.12")
+                .HasAnnotation("ProductVersion", "6.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
