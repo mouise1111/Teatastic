@@ -1,12 +1,14 @@
 ﻿@model Order
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 <form asp-action="Checkout" method="post" class="form-horizontal" role="form">
-    <h4>Please confirm your purchase</h4>
+    <h4>@Localizer["Please confirm your purchase"]</h4>
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-5">
-            <input type="submit" class="btn btn-primary" value="Complete Order" />
+            <input type="submit" class="btn btn-primary" value="@Localizer["Complete Order"]" />
         </div>
     </div>
 </form>

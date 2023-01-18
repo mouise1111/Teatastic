@@ -117,19 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Email" xml:space="preserve">
-    <value>Email</value>
+  <data name="FirstName" xml:space="preserve">
+    <value>Voornaam</value>
   </data>
-  <data name="First Name" xml:space="preserve">
-    <value>Prénom</value>
+  <data name="LastName" xml:space="preserve">
+    <value>Achternaam</value>
   </data>
-  <data name="Last Name" xml:space="preserve">
-    <value>Nom</value>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Telefoonnummer</value>
   </data>
-  <data name="UserName" xml:space="preserve">
-    <value>Nom d’utilisateur</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utilisateurs</value>
+  <data name="Username" xml:space="preserve">
+    <value>Gebruikersnaam</value>
   </data>
 </root>

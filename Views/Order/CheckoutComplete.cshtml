@@ -1,15 +1,18 @@
 ﻿@model Teatastic.Models.Order
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
-<h1>Thank you for your order!</h1>
+
+<h1>@Localizer["Thank you for your order!"]</h1>
 
 <h5 class="mt-5">Order Id: @Model.Id</h5>
 <table class="table">
     <thead>
         <tr>
-            <th></th>
-            <th>Tea</th>
-            <th>Price</th>
-            <th>Quantity</th>
+            @*<th></th>*@
+            <th>@Localizer["Tea"]</th>
+            <th>@Localizer["Price"]</th>
+            <th>@Localizer["Quantity"]</th>
         </tr>
     </thead>
     <tbody>
@@ -17,9 +20,9 @@
         {
             var itemTotal = item.Tea.Price * item.Quantity;
             <tr>
-                <td>
-                    @*<a class="a-cleanup" asp-controller="Teas" asp-action="Details" asp-route-id="@item.Id"><img src="@item.Tea.ImageUrl" style="height: 4em"></a>*@
-                </td>
+                @*<td>
+                    <a class="a-cleanup" asp-controller="Teas" asp-action="Details" asp-route-id="@item.Id"><img src="@item.Tea.ImageUrl" style="height: 4em"></a>
+                </td>*@
                 <td>
                     <a class="a-cleanup" asp-controller="Teas" asp-action="Details" asp-route-id="@item.Id">@item.Tea.Name</a>
                 </td>
@@ -35,7 +38,7 @@
     <tfoot>
     <td></td>
     <td class="text-right">
-        <strong>Total:</strong>
+        <strong>@Localizer["Total"]:</strong>
     </td>
     <td>
         <strong>@Model?.OrderTotal.ToString("c")</strong>

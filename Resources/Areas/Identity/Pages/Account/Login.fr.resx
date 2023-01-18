@@ -117,19 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Email" xml:space="preserve">
-    <value>Email</value>
+  <data name="external authentication" xml:space="preserve">
+    <value>Aucun service d’authentification externe n’est configuré.</value>
   </data>
-  <data name="First Name" xml:space="preserve">
-    <value>Prénom</value>
+  <data name="Forgot your password?" xml:space="preserve">
+    <value>Vous avez oublié votre mot de passe ?</value>
   </data>
-  <data name="Last Name" xml:space="preserve">
-    <value>Nom</value>
+  <data name="Log in" xml:space="preserve">
+    <value>S'identifier</value>
+  </data>
+  <data name="Log in using your" xml:space="preserve">
+    <value>Connectez-vous à l’aide de votre</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="Register as a new user" xml:space="preserve">
+    <value>S’inscrire en tant que nouvel utilisateur</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Souvenez-vous de moi</value>
+  </data>
+  <data name="Resend email confirmation" xml:space="preserve">
+    <value>Renvoyer l’e-mail de confirmation</value>
+  </data>
+  <data name="Use a local account to log in." xml:space="preserve">
+    <value>Utilisez un compte local pour vous connecter.</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Nom d’utilisateur</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utilisateurs</value>
   </data>
 </root>

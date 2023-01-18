@@ -1,7 +1,9 @@
 ﻿@page
 @model LogoutModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
-    ViewData["Title"] = "Log out";
+    ViewData["Title"] = Localizer["Log out"];
 }
 
 <header>
@@ -10,12 +12,16 @@
         if (User.Identity.IsAuthenticated)
         {
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="btn btn-link text-dark">Click here to Logout</button>
+                <button type="submit" class="btn btn-link text-dark">@Localizer["Click here to Logout"]</button>
             </form>
         }
         else
         {
-            <p>You have successfully logged out of the application.</p>
+            <div class="alert alert-dismissible alert-success">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <p>@Localizer["You have successfully logged out of the application."]</p>
+            </div>
+            
         }
     }
 </header>

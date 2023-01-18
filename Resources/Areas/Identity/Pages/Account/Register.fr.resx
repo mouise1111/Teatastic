@@ -117,19 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirmer le mot de passe</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
-  <data name="First Name" xml:space="preserve">
+  <data name="external authentication" xml:space="preserve">
+    <value>Aucun service d’authentification externe n’est configuré.</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
     <value>Prénom</value>
   </data>
-  <data name="Last Name" xml:space="preserve">
+  <data name="LastName" xml:space="preserve">
     <value>Nom</value>
+  </data>
+  <data name="Log in using your" xml:space="preserve">
+    <value>Connectez-vous à l’aide de votre</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registre</value>
+  </data>
+  <data name="Use another service to register." xml:space="preserve">
+    <value>Utilisez un autre service pour vous inscrire.</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Nom d’utilisateur</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utilisateurs</value>
   </data>
 </root>

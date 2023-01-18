@@ -1,5 +1,8 @@
 ﻿@page
 @model IndexModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 @{
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
@@ -13,22 +16,22 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating">
                 <input asp-for="Username" class="form-control" disabled />
-                <label asp-for="Username" class="form-label"></label>
+                <label asp-for="Username" class="form-label">@Localizer["Username"]</label>
             </div>
             <div class="form-floating">
                 <input asp-for="FirstName" class="form-control" disabled />
-                <label asp-for="FirstName" class="form-label"></label>
+                <label asp-for="FirstName" class="form-label">@Localizer["FirstName"]</label>
             </div>
             <div class="form-floating">
                 <input asp-for="LastName" class="form-control" disabled />
-                <label asp-for="LastName" class="form-label"></label>
+                <label asp-for="LastName" class="form-label">@Localizer["LastName"]</label>
             </div>
             <div class="form-floating">
                 <input asp-for="Input.PhoneNumber" class="form-control" />
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                <label asp-for="Input.PhoneNumber" class="form-label">@Localizer["PhoneNumber"]</label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">@Localizer["Save"]</button>
         </form>
     </div>
 </div>
