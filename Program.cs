@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using NETCore.MailKit.Infrastructure.Internal;
 using Teatastic.Areas.Identity.Data;
 using Teatastic.Data;
@@ -74,6 +75,14 @@ builder.Services.AddAuthentication()
 //     facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
 //     facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
 // })
+builder.Services.AddControllers();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApplicationName", Version = "v1" });
+});
+
+
+
 var app = builder.Build();
 
 var supportedCultures = new[] { "en-US", "fr", "nl" };
@@ -90,8 +99,14 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication1 v1"));
 }
 
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllers();
+//});
 //builder.Services.Configure<IdentityOptions>(options =>
 //{
 //    // Password settings.
