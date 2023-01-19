@@ -2,11 +2,13 @@
 Teatastic is a web application for buying and managing tea.
 
 <h2>Features</h2>
-- Browse and purchase tea by brand, function, and type
-- Add items to a cart and place an order
-- Create an account and login to track orders and manage account details
-- Manage brands, functions, and teas through admin features
-- Login with Google
+<ul>
+  <li>Browse and purchase tea by brand, function, and type</li>
+  <li>Add items to a cart and place an order</li>
+  <li>Create an account and login to make orders and manage account details</li>
+  <li>Manage brands, functions, and teas through admin features</li>
+  <li>Login with Google</li>
+</ul>
 
 <h2>Technologies</h2>
 <ul>
