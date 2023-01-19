@@ -29,5 +29,5 @@ Run the application</p>
 
 
 <h2>Support</h2>
-If you have any issues or questions, please feel free to reach out to me through the contact information provided.
+If you have any issues or questions, please feel free to reach out to me through the contact information provided. bashir.mouise@protonmail.com
 <a href = "mailto: bashir.mouise@protonmail.com">Send Email</a>
