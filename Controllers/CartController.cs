@@ -77,7 +77,7 @@ namespace Teatastic.Controllers
         {
             _cart.ClearCart();
             //TODO: cartitems need to be removed in db
-            //_context.CartItems.Remove();
+            _context.CartItems.RemoveRange();
             return RedirectToAction("Index");
         }
 
