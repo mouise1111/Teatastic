@@ -9,17 +9,18 @@ Teatastic is a web application for buying and managing tea.
 - Login with Google
 
 <h2>Technologies</h2>
-- ASP.NET Core 6.0
-- Entity Framework Core
-- Identity Framework
-- Bootstrap 4
-- Localization and Internationalization
-- MailKit
+<ul>
+  <li>ASP.NET Core 6.0</li>
+  <li>Entity Framework Core</li>
+  <li>Identity Framework</li>
+  <li>Bootstrap 4</li>
+  <li>Localization and Internationalization</li>
+  <li>MailKit</li>
+</ul>
 
 <h2>How to use</h2>
 Clone the repository
 Open the project in Visual Studio
-Update the ConnectionString in the appsettings.json file to match your local database
 Run migrations to create the database:
 <code>dotnet ef database update</code>
 Run the application
