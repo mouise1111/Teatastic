@@ -1,4 +1,4 @@
-#Teatastic
+<h1>Teatastic</h1>
 Teatastic is a web application for buying and managing tea.
 
 <h2>Features</h2>
