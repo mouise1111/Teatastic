@@ -58,7 +58,22 @@ builder.Services.AddMvc()
 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
 .AddDataAnnotationsLocalization();
 
+//var services = builder.Services;
+var configuration = builder.Configuration;
 
+builder.Services.AddAuthentication()
+    .AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+});
+
+//TODO: add facebook external login too
+//.AddFacebook(facebookOptions =>
+// {
+//     facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
+//     facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
+// })
 var app = builder.Build();
 
 var supportedCultures = new[] { "en-US", "fr", "nl" };

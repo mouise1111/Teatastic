@@ -67,7 +67,7 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="@Localizer["Log in using your"] @provider.DisplayName account">@provider.DisplayName</button>
+                                    <button type="submit" class="btn btn-secondary" name="provider" value="@provider.Name" title="@Localizer["Log in using your"] @provider.DisplayName account">@provider.DisplayName <i class="bi bi-@provider.DisplayName.ToLower()"></i></button>
                                 }
                             </p>
                         </div>
