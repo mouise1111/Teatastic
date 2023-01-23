@@ -16,18 +16,31 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @*@Html.DisplayNameFor(model => model.Name)*@
             @Localizer["Name"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            @*@Html.DisplayNameFor(model => model.Price)*@
             @Localizer["Price"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Price)
+        </dd>        
+        <dt class = "col-sm-2">
+            @Localizer["Functions"]
+        </dt>
+        <dd class = "col-sm-10">
+            @foreach (var function in Model.Functions)
+            {
+                <li>@function.Name</li>
+            }
+        </dd>
+        <dt class = "col-sm-2">
+            @Localizer["Brand"]
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Brand.Name)
         </dd>
     </dl>
     

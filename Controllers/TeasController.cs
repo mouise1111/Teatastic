@@ -83,6 +83,7 @@ namespace Teatastic.Controllers
 
             var tea = await _context.Tea
                 .Include(t => t.Functions)
+                .Include(t => t.Brand)
                 .FirstOrDefaultAsync(m => m.Id == id);
             //.FirstOrDefaultAsync(m => m.Id == id);
             if (tea == null)
@@ -210,6 +211,8 @@ namespace Teatastic.Controllers
             }
 
             var tea = await _context.Tea
+                .Include(t => t.Functions)
+                .Include(t => t.Brand)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tea == null)
             {
