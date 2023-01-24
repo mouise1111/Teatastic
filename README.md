@@ -10,6 +10,21 @@ Teatastic is a web application for buying and managing tea.
   <li>Login with Google</li>
 </ul>
 
+<h3>Note</h3>
+ <p>The application has been pre-populated with a few test users for your convenience. The following users have been seeded in the application:</p>
+<ul>
+  <li>
+    <strong>Email:</strong> john@doe.com<br>
+    <strong>Password:</strong> Abc!12345<br>
+    <strong>Role:</strong> User (client)
+  </li>
+  <li>
+    <strong>Email:</strong> admin@teatastic.be <br>
+    <strong>Password:</strong> Abc!12345<br>
+    <strong>Role:</strong> System- and Useradmin
+  </li>
+</ul>
+
 <h2>Technologies</h2>
 <ul>
   <li>ASP.NET Core 6.0</li>
