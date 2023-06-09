@@ -21,12 +21,13 @@ Teatastic is a web application for buying and managing tea.
 </ul>
 
 <h2>How to use</h2>
-<p>Clone the repository </br>
-Open the project in Visual Studio</br>
-Run migrations to create the database:</br>
-<code>dotnet ef database update</code> </br>
-Run the application</p>
-
+<ol>
+  <li>Clone the repository</li>
+  <li>Open the project in Visual Studio</li>
+  <li>Run migrations to create the database:</br>
+  <code>dotnet ef database update</code></li>
+  <li>Run the application</li>
+</ol>
 
 <h2>Support</h2>
 If you have any issues or questions, please feel free to reach out to me through the contact information provided. bashir.mouise@protonmail.com
